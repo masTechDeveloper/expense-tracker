@@ -1,15 +1,17 @@
 import React from 'react';
+import { Navbar } from './components/Navbar';
 import { Header } from './components/Header';
 import { Balance } from './components/Balance';
 import { IncomeExpense } from './components/IncomeExpense';
 import { TransactionList } from './components/TransactionList';
 import { AddTransaction } from './components/AddTransaction';
-import { Navbar } from './components/Navbar';
+import { GlobalProvider } from './contextAPI/GlobalState';
+
 import './App.css';
 
 function App() {
   return (
-    <div>
+    <GlobalProvider>
       <Navbar />
       <Header />
       <div className='container'>
@@ -21,7 +23,7 @@ function App() {
 
         <TransactionList />
       </div>
-    </div>
+    </GlobalProvider>
   );
 }
 
