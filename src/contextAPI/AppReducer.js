@@ -13,6 +13,12 @@ export default (state, action) => {
         ...state,
         transactions: [action.payload, ...state.transactions],
       };
+
+    case 'SET_WEB3':
+      return {
+        ...state,
+        web3: action.payload,
+      };
     default:
       return state;
   }

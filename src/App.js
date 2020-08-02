@@ -1,5 +1,6 @@
 import React from 'react';
 import { Navbar } from './components/Navbar';
+import { BlockchainDetails } from './components/BlockchainDetails';
 import { Header } from './components/Header';
 import { Balance } from './components/Balance';
 import { IncomeExpense } from './components/IncomeExpense';
@@ -14,7 +15,9 @@ function App() {
     <GlobalProvider>
       <Navbar />
       <Header />
+
       <div className='container'>
+        <BlockchainDetails />
         <Balance />
 
         <IncomeExpense />
