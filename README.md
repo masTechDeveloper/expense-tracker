@@ -1,6 +1,6 @@
 ## Live : http://exp-tracker-dapp.surge.sh/
 
-# Available Scripts
+# Available Script
 
 In the project directory, you can run:
 
