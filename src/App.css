@@ -27,6 +27,7 @@ nav {
 .header {
   text-align: center;
   margin-top: 20px;
+  color: #bd4f7a;
 }
 
 .container {
@@ -143,7 +144,7 @@ input[type='number'] {
 
 .delete-btn {
   cursor: pointer;
-  background-color: #e74c3c;
+  background-color: #bd4f7a;
   border: 0;
   color: #fff;
   font-size: 20px;
