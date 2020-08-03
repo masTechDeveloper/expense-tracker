@@ -14,17 +14,25 @@ function App() {
   return (
     <GlobalProvider>
       <Navbar />
-      <Header />
 
-      <div className='container'>
-        <BlockchainDetails />
-        <Balance />
-
-        <IncomeExpense />
-
-        <AddTransaction />
-
-        <TransactionList />
+      <div className='container-fluid '>
+        <div className='row'>
+          <div className='col-lg-4 col-md-4 col-sm-12 col-12'>
+            <BlockchainDetails />
+          </div>
+          <div className='col-lg-4 col-md-4 col-sm-12 col-12'>
+            <Header />
+            <Balance />
+            <IncomeExpense />
+            <AddTransaction />
+          </div>
+          <div className='col-lg-4 col-md-4 col-sm-12 col-12 '>
+            <h3>Transaction History</h3>
+            <div className='scroll'>
+              <TransactionList />
+            </div>
+          </div>
+        </div>
       </div>
     </GlobalProvider>
   );
