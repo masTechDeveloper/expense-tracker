@@ -28,7 +28,7 @@ export const GlobalProvider = ({ children }) => {
 
   useEffect(() => {
     loadBlockchain();
-  });
+  }, []);
 
   async function loadBlockchain() {
     try {
@@ -64,13 +64,14 @@ export const GlobalProvider = ({ children }) => {
   async function addTransToBlockchain(transaction) {
     const { web3, contract } = state;
     const account = await web3.eth.getAccounts();
+
     const receipt = await contract.methods
       .addTransaction(transaction.transactionDescription, transaction.amount)
       .send({ from: account[0] });
 
     // Destructure Tx Hash
-    const { transactionHash } = receipt;
-    console.log('Transaction Hash', transactionHash);
+    // const { transactionHash } = receipt;
+    // console.log('Transaction Hash', transactionHash);
 
     addTrans(transaction);
   }

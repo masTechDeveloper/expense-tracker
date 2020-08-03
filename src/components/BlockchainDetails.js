@@ -23,16 +23,17 @@ export const BlockchainDetails = () => {
         <div className='accountDetails'>
           <h1 className='walletHeading'>Your Account Details</h1>
 
-          <h4>
-            wallet address: <span className='wallet'> {account}</span>
-          </h4>
-          <br />
-          <h4>
-            Balance:
+          <p>
+            <strong>Wallet Address: </strong>
+            <span className='wallet'> {account}</span>
+          </p>
+
+          <p>
+            <strong>Balance: </strong>
             <span>
               <br /> {balance} ETH
             </span>
-          </h4>
+          </p>
         </div>
       );
     } else {
