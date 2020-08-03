@@ -17,18 +17,32 @@ export const BlockchainDetails = () => {
     })();
   }, [web3]);
 
-  return (
-    <div className='accountDetails'>
-      <h4>
-        wallet address: <span className='wallet'> {account}</span>
-      </h4>
-      <br />
-      <h4>
-        Balance:
-        <span>
-          <br /> {balance} ETH
-        </span>
-      </h4>
-    </div>
-  );
+  function checkWeb3Status() {
+    if (account) {
+      return (
+        <div className='accountDetails'>
+          <h1 className='walletHeading'>Your Account Details</h1>
+
+          <h4>
+            wallet address: <span className='wallet'> {account}</span>
+          </h4>
+          <br />
+          <h4>
+            Balance:
+            <span>
+              <br /> {balance} ETH
+            </span>
+          </h4>
+        </div>
+      );
+    } else {
+      return (
+        <div className='accountDetails'>
+          <h1 className='walletHeading'>Your Account Details</h1>
+          <h4 className='red'>Loading... Web3 not Connected.</h4>{' '}
+        </div>
+      );
+    }
+  }
+  return checkWeb3Status();
 };

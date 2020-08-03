@@ -19,6 +19,12 @@ export default (state, action) => {
         ...state,
         web3: action.payload,
       };
+
+    case 'SET_CONTRACT':
+      return {
+        ...state,
+        contract: action.payload,
+      };
     default:
       return state;
   }

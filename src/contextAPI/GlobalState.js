@@ -1,5 +1,9 @@
 import React, { createContext, useReducer, useEffect } from 'react';
 import AppReducer from './AppReducer';
+import {
+  CONTRACT_ADDRESS,
+  CONTRACT_ABI,
+} from '../SmartContract/ContractConfig';
 import Web3 from 'web3';
 
 // Initial state
@@ -12,6 +16,7 @@ const initialState = {
     // { id: 5, text: 'Testing', amount: 1000 },
   ],
   web3: null,
+  contract: null,
 };
 
 // Create context
@@ -26,15 +31,48 @@ export const GlobalProvider = ({ children }) => {
   });
 
   async function loadBlockchain() {
-    const web3 = new Web3(Web3.givenProvider);
-    await Web3.givenProvider.enable();
-    setWeb3(web3);
+    try {
+      const web3 = new Web3(Web3.givenProvider);
+      await Web3.givenProvider.enable();
+      setWeb3(web3);
+
+      const contract = new web3.eth.Contract(CONTRACT_ABI, CONTRACT_ADDRESS);
+
+      setContract(contract);
+
+      let transCount = await contract.methods.transactionCount().call();
+
+      for (var i = 0; i < transCount; i++) {
+        const {
+          amount,
+          transactionDescription,
+          transactionOwner,
+        } = await contract.methods.transaction(i).call();
+        let transObj = {
+          amount: parseInt(amount),
+          transactionDescription,
+          transactionOwner,
+        };
+
+        addTrans(transObj);
+      }
+    } catch (error) {
+      alert('Error in loading Web3.... Please Connect Metamask Wallet', error);
+    }
   }
 
+  // Action to Setup web3
   function setWeb3(web3) {
     dispatch({
       type: 'SET_WEB3',
       payload: web3,
+    });
+  }
+
+  function setContract(contract) {
+    dispatch({
+      type: 'SET_CONTRACT',
+      payload: contract,
     });
   }
 
@@ -61,6 +99,7 @@ export const GlobalProvider = ({ children }) => {
         deleteTrans,
         addTrans,
         web3: state.web3,
+        contract: state.contract,
       }}
     >
       {children}
