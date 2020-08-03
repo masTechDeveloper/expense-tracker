@@ -5,7 +5,7 @@ export const AddTransaction = () => {
   const [text, setText] = useState('');
   const [amount, setAmount] = useState(0);
 
-  const { addTrans, addTransToBlockchain } = useContext(GlobalContext);
+  const { addTransToBlockchain } = useContext(GlobalContext);
 
   const onSubmit = (e) => {
     e.preventDefault();
