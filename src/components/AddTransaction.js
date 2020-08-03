@@ -5,18 +5,18 @@ export const AddTransaction = () => {
   const [text, setText] = useState('');
   const [amount, setAmount] = useState(0);
 
-  const { addTrans } = useContext(GlobalContext);
+  const { addTrans, addTransToBlockchain } = useContext(GlobalContext);
 
   const onSubmit = (e) => {
     e.preventDefault();
 
     const newTrans = {
-      id: Math.floor(Math.random() * 100000000),
-      text,
+      transactionDescription: text,
       amount: +amount,
     };
 
-    addTrans(newTrans);
+    // addTrans(newTrans);
+    addTransToBlockchain(newTrans);
   };
 
   return (
