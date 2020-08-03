@@ -28,7 +28,7 @@ export const GlobalProvider = ({ children }) => {
 
   useEffect(() => {
     loadBlockchain();
-  }, []);
+  });
 
   async function loadBlockchain() {
     try {
