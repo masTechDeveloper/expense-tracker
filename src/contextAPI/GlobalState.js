@@ -28,7 +28,7 @@ export const GlobalProvider = ({ children }) => {
 
   useEffect(() => {
     loadBlockchain();
-  });
+  }, []);
 
   async function loadBlockchain() {
     try {
@@ -61,6 +61,28 @@ export const GlobalProvider = ({ children }) => {
     }
   }
 
+  async function addTransToBlockchain(transaction) {
+    const { web3, contract } = state;
+    const account = await web3.eth.getAccounts();
+    const receipt = await contract.methods
+      .addTransaction(transaction.transactionDescription, transaction.amount)
+      .send({ from: account[0] });
+
+    // Destructure Tx Hash
+    // const { transactionHash } = receipt;
+    // console.log('Transaction Hash', transactionHash);
+
+    addTrans(transaction);
+  }
+
+  // Action to Add Transaction
+  function addTrans(transaction) {
+    dispatch({
+      type: 'ADD_TRANS',
+      payload: transaction,
+    });
+  }
+
   // Action to Setup web3
   function setWeb3(web3) {
     dispatch({
@@ -84,20 +106,13 @@ export const GlobalProvider = ({ children }) => {
     });
   }
 
-  // Action to Add Transaction
-  function addTrans(transaction) {
-    dispatch({
-      type: 'ADD_TRANS',
-      payload: transaction,
-    });
-  }
-
   return (
     <GlobalContext.Provider
       value={{
         transactions: state.transactions,
         deleteTrans,
         addTrans,
+        addTransToBlockchain,
         web3: state.web3,
         contract: state.contract,
       }}
