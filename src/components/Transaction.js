@@ -1,8 +1,8 @@
-import React, { useContext } from 'react';
-import { GlobalContext } from '../contextAPI/GlobalState';
+import React from 'react';
+// import { GlobalContext } from '../contextAPI/GlobalState';
 
 export const Transaction = ({ transaction }) => {
-  const { deleteTrans } = useContext(GlobalContext);
+  // const { deleteTrans } = useContext(GlobalContext);
 
   const sign = transaction.amount < 0 ? '-' : '+';
 
@@ -20,16 +20,16 @@ export const Transaction = ({ transaction }) => {
       </p>
 
       <p>
-        <strong>Tx.Owner:</strong>{' '}
+        <strong>Transaction Owner:</strong>{' '}
         <span className='txOwner'>{transaction.transactionOwner}</span>
       </p>
 
-      <button
+      {/* <button
         onClick={() => deleteTrans(transaction.id)}
         className='delete-btn'
       >
         x
-      </button>
+      </button> */}
     </li>
   );
 };
