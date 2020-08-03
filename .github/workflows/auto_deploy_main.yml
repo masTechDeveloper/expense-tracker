@@ -21,8 +21,8 @@ jobs:
       - name: GitHub Action for Yarn
         uses: Borales/actions-yarn@v2.1.0
         with:
-          
-          cmd: npm install 
+          # Yarn command
+          cmd: install # npm install/ yarn install
 
       - name: Creating build
         run: npm run build
@@ -32,8 +32,3 @@ jobs:
 
       - name: deploying on surge
         run: surge ./build http://exp-tracker-dapp.surge.sh/ --token ${{secrets.EXP_TRACKER_DAPP}}
-
-
-        name: Deploy React with Web3 on Surge with Yarn
-
- 
