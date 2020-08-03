@@ -70,8 +70,8 @@ export const GlobalProvider = ({ children }) => {
       .send({ from: account[0] });
 
     // Destructure Tx Hash
-    // const { transactionHash } = receipt;
-    // console.log('Transaction Hash', transactionHash);
+    const { transactionHash } = receipt;
+    console.log('Transaction Hash', transactionHash);
 
     addTrans(transaction);
   }
